@@ -1,6 +1,7 @@
 'use strict';
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 const querystring = require('querystring');
 
 
@@ -166,10 +167,12 @@ class WebPage {
 
   // ログを取る。
   static log(msg) {
-    const PATH = "/var/www/data/NodeCGI.log";
+    let logfile = "/var/www/data/NodeCGI.log";
+    if (os.platform() == "win32")
+       logfile = "C:/temp/NodeCGI.log";
     let dt = new Date();
     let sdt = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    fs.appendFileSync(PATH, sdt + " " + msg + "\n");
+    fs.appendFileSync(logfile, sdt + " " + msg + "\n");
   }
 }
 

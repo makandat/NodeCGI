@@ -5,7 +5,7 @@ const CgiPage = require("./cgi.js").WebPage;
 function proc(co) {
   let message = co.get_param("message", "");
   let msg = message.toUpperCase();
-  console.log(msg);
+  CgiPage.send_text(msg);
 }
 
 new CgiPage("", proc);
