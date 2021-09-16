@@ -37,7 +37,9 @@ class WebPage {
     }
     else {
       this.qs = "";
-      callback(this);
+      if (callback != null) {
+        callback(this);
+      }
     }
     // POST データ
     if (this.get_method() == "POST") {
